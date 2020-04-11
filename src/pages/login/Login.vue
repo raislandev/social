@@ -15,7 +15,6 @@
 
 <script>
 import LoginTemplate from "@/templates/LoginTemplate"
-import axios from 'axios'
 
 
 export default {
@@ -33,26 +32,29 @@ export default {
   methods:{
     login(){
       console.log("ok")
-      axios
-      .post('http://localhost:8000/api/login',{
+      this.$http
+      .post(this.$urlApi+'login',{
           email:this.email,
           password: this.password
       })
       .then(response => {
-        if(response.data.token){
-          console.log("Login com sucesso")
-          sessionStorage.setItem('usuario',JSON.stringify(response.data))
+        if(response.data.status){
+          console.log(response.data.usuario)
+          this.$store.commit('setUsuario',response.data.usuario)
+          sessionStorage.setItem('usuario',JSON.stringify(response.data.usuario))
           this.$router.push('/')
-        }else if(response.data.status == false){
-          console.log("login não existe")
-          alert("login ou senha inválidos")
-        }else{
+        }else if(response.data.status == false && response.data.validacao){
           console.log("erro de validação")
           let erros=""
-          for(let erro of Object.values(response.data)){
+          for(let erro of Object.values(response.data.erros)){
             erros += erro+" "
           }
-          alert(erros) 
+          alert(erros)
+          ///
+         
+        }else{
+          console.log("login não existe")
+          alert("login ou senha inválidos")
         }
         
       })

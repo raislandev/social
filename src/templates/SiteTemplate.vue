@@ -1,12 +1,16 @@
 <template>
   <div id="app">
-    <header>
+    <header >
       <nav-bar url="/" cor="teal darken-1">
-         <li><router-link to="/">Home</router-link></li>
-         <li v-if="!usuario"><router-link to="/login">Login</router-link></li>
-         <li v-if="!usuario"><router-link to="/cadastro">Cadastro</router-link></li>
-         <li v-if="usuario"><router-link to="/perfil">{{usuario.name}}</router-link></li>
-         <li v-if="usuario"><a @click="sair()">Sair</a></li>
+         <div class="top">
+            <li><router-link to="/">Home</router-link></li>
+            <li v-if="!usuario"><router-link to="/login">Login</router-link></li>
+            <li v-if="!usuario"><router-link to="/cadastro">Cadastro</router-link></li>
+            <li><router-link to="/amigos">Amigos </router-link></li>
+            <li v-if="usuario"><router-link to="/perfil">{{usuario.name}}</router-link></li>
+            <li v-if="usuario"><a @click="sair()">Sair</a></li>
+         </div>
+         
        </nav-bar>
     </header>
     <main>
@@ -17,9 +21,8 @@
               <slot name="menuesquerdo"/>
             </card-menu-vue>
             <card-menu-vue>
-              <h2>Amigos</h2>
-              <li>Sheila</li>
-              <li>Kelly</li>
+              <slot name="menuesquerdoamigos"/>
+             
             </card-menu-vue>
           </grid-vue>
           <grid-vue size="8">
@@ -58,15 +61,16 @@ export default {
     NavBar,FooterVue,GridVue,CardMenuVue
   },
   created(){
-    let usuario = sessionStorage.getItem('usuario')
+    let usuario = this.$store.getters.getUsuario
     if(usuario){
-      this.usuario = JSON.parse(usuario)
+      this.usuario = this.$store.getters.getUsuario
     }else{
       this.$router.push('/login')
     }
   },
   methods:{
     sair(){
+      this.$store.commit('setUsuario',null)
       sessionStorage.clear()
       this.usuario = false
       this.$router.push('/login')

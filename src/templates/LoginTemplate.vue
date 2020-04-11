@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <header>
+    <header >
       <nav-bar url="/" cor="teal darken-1">
-         <li v-if="!usuario"><router-link to="/login">Login</router-link></li>
-         <li v-if="!usuario"><router-link to="/cadastro">Cadastro</router-link></li>
-         <li v-if="usuario"><router-link to="/perfil">{{usuario.name}}</router-link></li>
-         <li v-if="usuario"><a @click="sair()">Sair</a></li>
+         <span class="top">
+            <li v-if="!usuario"><router-link to="/login">Login</router-link></li>
+            <li v-if="!usuario"><router-link to="/cadastro">Cadastro</router-link></li>
+            <li v-if="usuario"><router-link to="/perfil">{{usuario.name}}</router-link></li>
+            <li v-if="usuario"><a @click="sair()">Sair</a></li>
+         </span>
        </nav-bar>
     </header>
     <main>
@@ -52,16 +54,10 @@ export default {
     NavBar,FooterVue,GridVue,CardMenuVue
   },
   created(){
-    let usuario = sessionStorage.getItem('usuario')
+    let usuario = this.$store.getters.getUsuario
     if(usuario){
-      this.usuario = JSON.parse(usuario)
+      this.usuario = this.$store.getters.getUsuario
       this.$router.push('/')
-    }
-  },
-  methods:{
-    sair(){
-      sessionStorage.clear()
-      this.usuario = false
     }
   }
 }

@@ -25,7 +25,6 @@
 
 <script>
 import SiteTemplate from "@/templates/SiteTemplate"
-import axios from 'axios'
 
 
 export default {
@@ -45,9 +44,9 @@ export default {
    
   },
   created(){
-    let usuario = sessionStorage.getItem('usuario')
+    let usuario = this.$store.getters.getUsuario
     if(usuario){
-      this.usuario = JSON.parse(usuario)
+      this.usuario = this.$store.getters.getUsuario
       this.name = this.usuario.name
       this.email = this.usuario.email
     }
@@ -65,24 +64,26 @@ export default {
     },
     perfil(){
       console.log(this.imagem)
-      axios
-      .put('http://localhost:8000/api/perfil',{
+      this.$http
+      .put(this.$urlApi+'perfil',{
           name: this.name,
           email:this.email,
           imagem: this.imagem,
           password: this.password,
           password_confirmation: this.password_confirmation
-      },{"headers":{"authorization":"Bearer "+this.usuario.token}})
+      },{"headers":{"authorization":"Bearer "+this.$store.getters.getToken}})
       .then(response => {
-        if(response.data.token){
+        console.log(response)
+        if(response.data.status){
           console.log(response.data)
-          this.usuario = response.data
+          this.usuario = response.data.usuario
+          this.$store.commit('setUsuario',this.usuario)
           sessionStorage.setItem('usuario',JSON.stringify(this.usuario))
           alert("Dados atualizados com sucesso!")
-        }else{
+        }else if(response.data.status == false && response.data.validacao){
           console.log("erro de validação")
           let erros=""
-          for(let erro of Object.values(response.data)){
+          for(let erro of Object.values(response.data.erros)){
             erros += erro+" "
           }
           alert(erros) 
