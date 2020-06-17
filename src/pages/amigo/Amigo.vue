@@ -1,7 +1,7 @@
 <template>
     <site-template>
      <span slot="menuesquerdo">
-       <img src="../../assets/amigos.jpg" class="responsive-img" alt="image">
+       <img src="https://cdn.pixabay.com/photo/2015/11/06/11/51/friends-1026523_960_720.jpg" class="responsive-img" alt="image">
      </span> 
      <ul slot="menuesquerdoamigos">
        <h6>Seguindo</h6>

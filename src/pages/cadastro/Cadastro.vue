@@ -1,7 +1,7 @@
 <template>
     <login-template>
         <span slot="menuesquerdo">
-            <img src="https://cakeerp.com/wp-content/uploads/2019/10/capa-2-1080x675.png" class="responsive-img" alt="image">
+            <img src="https://cdn.pixabay.com/photo/2014/12/26/09/49/social-media-580301_960_720.png" class="responsive-img" alt="image">
         </span>
         <span slot="principal">
             <h2>Cadastro</h2>
@@ -9,8 +9,10 @@
             <input type="email" placeholder="E-mail" v-model="email">
             <input type="password" placeholder="Senha" v-model="password">
             <input type="password" placeholder="Confirmar Senha" v-model="password_confirmation">
-            <button class="btn" @click="cadastro()">Salvar</button>
-            <router-link class="btn orange" to="/login">Já Tenho Conta</router-link>
+            <div style="margin-top:10px">
+              <button class="btn" @click="cadastro()">Salvar</button>
+              <router-link class="btn orange" to="/login">Já Tenho Conta</router-link>
+            </div>
         </span>
     </login-template>
 </template>

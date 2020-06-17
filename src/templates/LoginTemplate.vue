@@ -26,10 +26,20 @@
     </main>
     
     <footer-vue>
-        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+        <li>
+          <a href="https://github.com/raislandev/social" target="_blank" class="grey-text text-lighten-3" title="Github" >
+            <i class="fa fa-github" aria-hidden="true"></i>
+          </a>
+          <a href="mailto:raislan6@gmail.com" target="_blank" class="grey-text text-lighten-3" title="Email">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/raislan-da-silva-nascimento-a7a324143/" target="_blank" class="grey-text text-lighten-3" title="Linkedin">
+            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+          </a>
+          
+        </li>
+       
+       
     </footer-vue>
   </div>
 </template>
@@ -64,5 +74,20 @@ export default {
 </script>
 
 <style>
+
+.grey-text i{
+  font-size: 2.3em;
+  padding-right: 8px;
+  
+}
+
+.grey-text i:hover{
+  color:rgb(211, 194, 168);
+}
+
+
+
+
+
 
 </style>

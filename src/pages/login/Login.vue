@@ -1,14 +1,17 @@
 <template>
     <login-template>
         <span slot="menuesquerdo">
-            <img src="https://cakeerp.com/wp-content/uploads/2019/10/capa-2-1080x675.png" class="responsive-img" alt="image">
+            <img src="https://cdn.pixabay.com/photo/2014/12/26/09/49/social-media-580301_960_720.png" class="responsive-img" alt="image">
         </span>
         <span slot="principal">
             <h2>Login</h2>
             <input type="text" placeholder="E-mail" v-model="email">
             <input type="password" placeholder="Senha" v-model="password">
-            <button class="btn" @click="login()">Entrar</button>
-            <router-link class="btn orange" to="/cadastro">Cadastre-se</router-link>
+            <div style="margin-top:10px">
+              <button class="btn" @click="login()">Entrar</button>
+              <router-link class="btn orange" to="/cadastro">Cadastre-se</router-link>
+            </div>
+            
         </span>
     </login-template>
 </template>

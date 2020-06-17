@@ -1,7 +1,10 @@
 <template>
     <site-template>
         <span slot="menuesquerdo">
-            <img :src="usuario.imagem" class="responsive-img" alt="image">
+          <div>
+            <img :src="usuario.imagem"  class="circle responsive-img" alt="image">
+          </div>
+            
         </span>
         <span slot="principal">
             <h2>Perfil</h2>
@@ -25,6 +28,8 @@
 
 <script>
 import SiteTemplate from "@/templates/SiteTemplate"
+import GridVue from "@/components/layouts/GridVue"
+
 
 
 export default {
@@ -40,7 +45,7 @@ export default {
     }
   },
   components:{
-    SiteTemplate,
+    SiteTemplate,GridVue,
    
   },
   created(){
