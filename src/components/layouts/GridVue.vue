@@ -1,5 +1,5 @@
 <template>
-   <div :class="'col s'+size">
+   <div :class="'col s12 m'+size">
        <slot></slot>
    </div>
 </template>

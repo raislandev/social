@@ -20,19 +20,19 @@
   <span slot="menuesquerdoamigos"> 
     <h6>Seguindo</h6>
     <router-link v-for="item in amigos" :key="item.id" :to="'/pagina/'+item.id+'/'+$slug(item.name,{replacement:'_',lower: true})">
-      <li>{{ item.name }}</li>
+      <li>{{ $uppercase(item.name) }}</li>
     </router-link>
     <li v-if="!amigos.length">Nenhum Amigo</li>
 
     <h6>seguidores</h6>
-    <router-link v-for="item in seguidores" :key="item.id" :to="'/pagina/'+item.id+'/'+$slug(item.name,{replacement:'_',lower: true})">
-      <li>{{ item.name }}</li>
+    <router-link v-for="item in seguidores" :key="item.id+new Date().getTime()" :to="'/pagina/'+item.id+'/'+$slug(item.name,{replacement:'_',lower: true})">
+      <li>{{ $uppercase(item.name) }}</li>
     </router-link>
     <li v-if="!seguidores.length">Nenhum Amigo</li>
   </span>
   <span slot="principal">
     <publication-vue ></publication-vue>
-    <card-conteudo-vue v-for="item in listaConteudos" :key="item.id"
+    <card-conteudo-vue  v-for="item in listaConteudos" :key="item.id"
       :id="item.id"
       :usuarioid="item.user.id"
       :comentarios="item.comentarios"
@@ -90,6 +90,7 @@ export default {
         //console.log(response)
         if(response.data.status){
           //this.conteudos = response.data.conteudos.data
+          console.log(response.data.conteudos)
           this.$store.commit('setConteudoLinhaTempo',response.data.conteudos.data)
           this.urlProxPage = response.data.conteudos.next_page_url
            

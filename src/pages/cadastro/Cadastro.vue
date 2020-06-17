@@ -26,7 +26,7 @@ export default {
       name:"",
       email:'',
       password:'',
-      password_confirmation
+      password_confirmation:''
     }
   },
   components:{

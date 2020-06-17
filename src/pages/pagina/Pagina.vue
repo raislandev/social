@@ -17,13 +17,13 @@
   <span slot="menuesquerdoamigos"> 
     <h6>Seguindo</h6>
      <router-link v-for="item in amigos" :key="item.id" :to="'/pagina/'+item.id+'/'+$slug(item.name,{replacement:'_',lower: true})">
-        <li>{{ item.name }}</li>
+        <li>{{ $uppercase(item.name)}}</li>
      </router-link>   
     <li v-if="!amigos.length">Nenhum Amigo</li>
 
      <h6>Seguidores</h6>
-     <router-link v-for="item in seguidores" :key="item.id" :to="'/pagina/'+item.id+'/'+$slug(item.name,{replacement:'_',lower: true})">
-        <li>{{ item.name }}</li>
+     <router-link v-for="item in seguidores" :key="item.id+new Date().getTime()" :to="'/pagina/'+item.id+'/'+$slug(item.name,{replacement:'_',lower: true})">
+        <li>{{ $uppercase(item.name) }}</li>
      </router-link>   
     <li v-if="!seguidores.length">Nenhum Amigo</li>
   </span>

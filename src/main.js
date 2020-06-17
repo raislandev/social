@@ -12,17 +12,23 @@ let slug2= function(string){
   return string.toLowerCase()
 }
 
+let uppercase  = function(string){
+  string = string[0].toUpperCase()+string.slice(1); 
+  return string
+}
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.prototype.$urlApi = 'http://localhost:8000/api/'
 Vue.prototype.$slug = slug
+Vue.prototype.$uppercase = uppercase
 Vue.use(Vuex)
 
 var store ={
   state:{
     usuario:sessionStorage.getItem('usuario')? JSON.parse(sessionStorage.getItem('usuario')) : null,
-    conteudoLinhaTempo:[]
+    conteudoLinhaTempo:[],
+    usuariosGeralAmigos:[]
   },
   getters:{
     getUsuario:state =>{
@@ -33,7 +39,11 @@ var store ={
     },
     getConteudoLinhaTempo:state =>{
       return state.conteudoLinhaTempo
-    } 
+    },
+    
+    getUsuariosGeralAmigos:state =>{
+      return state.usuariosGeralAmigos
+    }
 
   },
   mutations:{
@@ -46,6 +56,15 @@ var store ={
     setPaginacaoLinhaTempo(state,lista){
       for(let item of lista){
         state.conteudoLinhaTempo.push(item)
+      }
+    },
+
+    setUsuariosGeralAmigos(state,n){
+      state.usuariosGeralAmigos = n
+    },
+    setPaginacaoUsuariosGeralAmigos(state,lista){
+      for(let item of lista){
+        state.usuariosGeralAmigos.push(item)
       }
     }
 
